@@ -1,31 +1,77 @@
 # Device Tracker API
 
-## Project Description
-Device Tracker API is a small system integration project built with **Javalin** that allows users to **track and manage IoT-like devices**. The API supports basic CRUD operations: adding, updating, deleting, and retrieving device information. Device data is stored in an **in-memory HashMap** for simplicity, making it lightweight and easy to test.
-
-This project demonstrates integration of multiple components in a simple system:
-- **Backend:** Javalin REST API handling HTTP requests
-- **Data Storage:** In-memory HashMap for device data management
-- **Optional Frontend:** Basic HTML page fetching API data
-
-**Key Features:**
-- Add new devices with unique IDs
-- Update device details
-- Delete devices
-- Retrieve all devices or a specific device
-- Optional frontend dashboard displaying device data
-
-**Tech Stack:**
-- Java 17
-- Javalin 5.x
-- Jackson for JSON parsing
-- Maven for project management
+A small Javalin-based API for tracking devices.  
+Supports full CRUD operations (Create, Read, Update, Delete) using JSON over HTTP.
 
 ---
 
-## Setup Instructions
+## 📦 Requirements
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/yourusername/DeviceTrackerAPI.git
-cd DeviceTrackerAPI
+- Java 24 installed
+- Maven installed
+- Git (optional, if cloning from GitHub)
+
+
+
+## run the server
+
+cd "D:\Mayaba School\side\DeviceTrackerAPI"
+mvn exec:java -Dexec.mainClass="deviceAPI.Main"
+
+| Method | Endpoint        | Description        |
+| ------ | --------------- | ------------------ |
+| GET    | `/`             | Health check       |
+| GET    | `/devices`      | List all devices   |
+| GET    | `/devices/{id}` | Get a device by ID |
+| POST   | `/devices`      | Add a new device   |
+| PUT    | `/devices/{id}` | Update a device    |
+| DELETE | `/devices/{id}` | Delete a device    |
+
+
+## check health
+# PowerShell
+curl http://localhost:7000/
+
+# Bash
+curl http://localhost:7000/
+
+## Add device(POST)
+# PowerShell
+curl -X POST http://localhost:7000/devices -H "Content-Type: application/json" -d '{"id":"1","name":"Laptop"}'
+
+# Bash
+curl -X POST http://localhost:7000/devices \
+-H "Content-Type: application/json" \
+-d '{"id":"1","name":"Laptop"}'
+
+
+## List all devices
+# PowerShell
+curl http://localhost:7000/devices
+
+# Bash
+curl http://localhost:7000/devices
+
+## get a device by ID
+# PowerShell
+curl http://localhost:7000/devices/1
+
+# Bash
+curl http://localhost:7000/devices/1
+
+## update a device
+# PowerShell
+curl -X PUT http://localhost:7000/devices/1 -H "Content-Type: application/json" -d '{"id":"1","name":"Router"}'
+
+# Bash
+curl -X PUT http://localhost:7000/devices/1 \
+-H "Content-Type: application/json" \
+-d '{"id":"1","name":"Router"}'
+
+## delete a device
+# PowerShell
+curl -X DELETE http://localhost:7000/devices/1
+
+# Bash
+curl -X DELETE http://localhost:7000/devices/1
+

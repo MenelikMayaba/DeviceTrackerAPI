@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Tracker</title>
+</head>
+<body>
+    <h1>Devices</h1>
+    <ul id="deviceList"></ul>
+
+    <script>
+        fetch('/devices')
+            .then(res => res.json())
+            .then(devices => {
+                const ul = document.getElementById('deviceList');
+                devices.forEach(d => {
+                    const li = document.createElement('li');
+                    li.textContent = `${d.name} - ${d.status}`;
+                    ul.appendChild(li);
+                });
+            });
+    </script>
+
+</body>
+</html>
